@@ -8,11 +8,11 @@ namespace JujuControl.Data
 {
     public interface IJujuControl
     {
-        ExceptionFull Add<T>(T entity) where T : class;
-        ExceptionFull Update<T>(T entity) where T : class;
-        ExceptionFull Delete<T>(T entity) where T : class;
+        ExceptionFull Add<T>(T entity);
+        ExceptionFull Update<T>(T entity);
+        ExceptionFull Delete<T>(T entity);
         Task<ExceptionFull> SaveChangesAsync();
-        Task<List<T>> GetAllAsync<T>(T entity) where T : class;
+        Task<List<T>> GetAllAsync<T>() where T : class;
         Task<List<T>> SearchAsync<T>(Expression<Func<T, bool>> where) where T : class;
         void Erro(ExceptionFull exception);
     }

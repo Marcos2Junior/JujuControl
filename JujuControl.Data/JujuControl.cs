@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace JujuControl.Data
 {
-    public abstract class JujuControl : IJujuControl
+    public class JujuControl : IJujuControl
     {
-        private readonly DataContext _context;
+        protected readonly DataContext _context;
         private readonly ExceptionFull _exception = new ExceptionFull();
         public JujuControl(DataContext context) => _context = context;
-        public ExceptionFull Add<T>(T entity) where T : class
+        public ExceptionFull Add<T>(T entity)
         {
             try
             {
@@ -28,7 +28,7 @@ namespace JujuControl.Data
             return _exception;
         }
 
-        public ExceptionFull Delete<T>(T entity) where T : class
+        public ExceptionFull Delete<T>(T entity)
         {
             try
             {
@@ -62,7 +62,7 @@ namespace JujuControl.Data
             return _exception;
         }
 
-        public ExceptionFull Update<T>(T entity) where T : class
+        public ExceptionFull Update<T>(T entity)
         {
             try
             {
@@ -78,7 +78,7 @@ namespace JujuControl.Data
             return _exception;
         }
 
-        public async Task<List<T>> GetAllAsync<T>(T entity) where T : class =>
+        public async Task<List<T>> GetAllAsync<T>() where T : class =>
             await _context.Set<T>().ToListAsync();
 
         public async Task<List<T>> SearchAsync<T>(Expression<Func<T, bool>> where) where T : class =>
@@ -93,7 +93,7 @@ namespace JujuControl.Data
 
             try
             {
-                _ = _context.Database.ExecuteSqlCommandAsync(sql);
+                // _ = _context.Database.ExecuteSqlCommandAsync(sql);
             }
             catch (Exception)
             {

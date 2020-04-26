@@ -5,10 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\.editorconfig" Link=".editorconfig" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\JujuControl.Business\JujuControl.Business.csproj" />
     <ProjectReference Include="..\JujuControl.Data\JujuControl.Data.csproj" />
   </ItemGroup>
 

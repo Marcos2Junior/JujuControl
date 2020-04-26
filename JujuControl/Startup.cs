@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using JujuControl.Business.Services;
 using JujuControl.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -32,7 +33,8 @@ namespace JujuControl
             services.AddDbContext<DataContext>(options =>
                     options.UseMySql(Configuration.GetConnectionString("JujuControl"), builder =>
                     builder.MigrationsAssembly("JujuControl.Data")));
-
+            //services.AddScoped(typeof(IJujuControl), typeof(Data.JujuControl));
+            services.AddScoped(typeof(UsuarioService));
             services.AddCors();
 
             services.AddControllersWithViews().AddNewtonsoftJson(options =>

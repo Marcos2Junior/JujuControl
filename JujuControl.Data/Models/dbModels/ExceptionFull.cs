@@ -14,22 +14,21 @@ namespace JujuControl.Data.Models.dbModels
         public bool Status { get; set; }
         public DateTime Data { get; set; }
         public Usuario Usuario { get; set; }
-        public int UsuarioId { get; set; }
+        public int? UsuarioId { get; set; }
 
         public ExceptionFull()
         {
         }
 
-        public ExceptionFull(int id, string projeto, string classe, string metodo, string mensagem, bool status, DateTime data, Usuario usuario)
+        public ExceptionFull(string projeto, string classe, string metodo, string mensagem, bool status, DateTime data, int? usuarioId)
         {
-            Id = id;
             Projeto = projeto;
             Classe = classe;
             Metodo = metodo;
             Mensagem = mensagem;
             Status = status;
             Data = data;
-            Usuario = usuario;
+            UsuarioId = usuarioId;
         }
     }
 }

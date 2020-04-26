@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using JujuControl.Data;
 using JujuControl.Data.Models.dbModels;
+using JujuControl.Business.Services;
 
 namespace JujuControl.Controllers
 {
@@ -14,25 +15,27 @@ namespace JujuControl.Controllers
     [ApiController]
     public class UsuariosController : ControllerBase
     {
-        private readonly DataContext _context;
+        private readonly UsuarioService _usuario;
 
-        public UsuariosController(DataContext context)
+        public UsuariosController(UsuarioService usuario)
         {
-            _context = context;
+            _usuario = usuario;
         }
 
         // GET: api/Usuarios
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Usuario>>> GetUsuario()
         {
-            return await _context.Usuario.ToListAsync();
+
+            return await _usuario.GetAllUsuarioAsync();
+
         }
 
         // GET: api/Usuarios/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Usuario>> GetUsuario(int id)
         {
-            var usuario = await _context.Usuario.FindAsync(id);
+            var usuario = await _usuario.GetUsuarioAsync(id);
 
             if (usuario == null)
             {
@@ -49,29 +52,12 @@ namespace JujuControl.Controllers
         public async Task<IActionResult> PutUsuario(int id, Usuario usuario)
         {
             if (id != usuario.Id)
-            {
                 return BadRequest();
-            }
 
-            _context.Entry(usuario).State = EntityState.Modified;
+            if (await _usuario.CRUD(usuario, 1))
+                return CreatedAtAction("GetUsuario", new { id = usuario.Id }, usuario);
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UsuarioExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            return NotFound();
         }
 
         // POST: api/Usuarios
@@ -80,31 +66,18 @@ namespace JujuControl.Controllers
         [HttpPost]
         public async Task<ActionResult<Usuario>> PostUsuario(Usuario usuario)
         {
-            _context.Usuario.Add(usuario);
-            await _context.SaveChangesAsync();
+            if (await _usuario.CRUD(usuario, 0))
+                return CreatedAtAction("GetUsuario", new { id = usuario.Id }, usuario);
 
-            return CreatedAtAction("GetUsuario", new { id = usuario.Id }, usuario);
+            return BadRequest();
         }
 
         // DELETE: api/Usuarios/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Usuario>> DeleteUsuario(int id)
+        public async Task<bool> DeleteUsuario(Usuario usuario)
         {
-            var usuario = await _context.Usuario.FindAsync(id);
-            if (usuario == null)
-            {
-                return NotFound();
-            }
+            return await _usuario.CRUD(usuario, 2);
 
-            _context.Usuario.Remove(usuario);
-            await _context.SaveChangesAsync();
-
-            return usuario;
-        }
-
-        private bool UsuarioExists(int id)
-        {
-            return _context.Usuario.Any(e => e.Id == id);
         }
     }
 }
