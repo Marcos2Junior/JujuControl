@@ -12,7 +12,11 @@ namespace JujuControl.Data
     {
         protected readonly DataContext _context;
         private readonly ExceptionFull _exception = new ExceptionFull();
-        public JujuControl(DataContext context) => _context = context;
+        public JujuControl(DataContext context)
+        {
+            _context = context;
+            _context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+        }
         public ExceptionFull Add<T>(T entity)
         {
             try

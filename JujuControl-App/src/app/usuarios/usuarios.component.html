@@ -1,0 +1,33 @@
+<div class="container p-5">
+  <div class="form-inline my-2 my-lg-0">
+    <h2 class="col">Usuarios cadastrados</h2>
+    <input class="form-control mr-sm-2" type="text" placeholder="Pesquisar" [(ngModel)]="filtroLista"/>
+  </div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Login</th>
+        <th scope="col">Perfil</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="usuariosFiltrados && usuariosFiltrados.length">
+      <tr *ngFor="let item of usuariosFiltrados">
+        <th>{{ item.id }}</th>
+        <td>{{ item.nome }}</td>
+        <td>{{ item.login }}</td>
+        <td>{{ item.perfil }}</td>
+      </tr>
+    </tbody>
+    <tfoot *ngIf="!usuariosFiltrados.length">
+      <tr>
+        <td colspan="7" class="text-center">
+          <h4>
+            Nenhum usuario encontrado
+          </h4>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</div>

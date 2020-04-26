@@ -20,6 +20,7 @@ namespace JujuControl.Controllers
         public UsuariosController(UsuarioService usuario)
         {
             _usuario = usuario;
+            
         }
 
         // GET: api/Usuarios
