@@ -9,5 +9,10 @@ namespace JujuControl.Data
         { }
 
         public DbSet<Usuario> Usuario { get; set; }
+
+        public DbSet<Permissao> Permissao { get; set; }
+        public DbSet<Contato> Contato { get; set; }
+        public DbSet<Imagem> Imagem { get; set; }
+        public DbSet<ExceptionFull> ExceptionFull { get; set; }
     }
 }

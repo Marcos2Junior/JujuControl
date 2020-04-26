@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29920.165
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JujuControl", "JujuControl\JujuControl.csproj", "{938F1B82-97E6-42A2-BECB-59D1049BEBAE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JujuControl", "JujuControl\JujuControl.csproj", "{938F1B82-97E6-42A2-BECB-59D1049BEBAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JujuControl.Data", "JujuControl.Data\JujuControl.Data.csproj", "{2291124B-7BD1-48CA-B592-7BF534F67D3C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JujuControl.Data", "JujuControl.Data\JujuControl.Data.csproj", "{2291124B-7BD1-48CA-B592-7BF534F67D3C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JujuControl.Business", "JujuControl.Business\JujuControl.Business.csproj", "{F67D5303-F01B-46D4-B5D8-B1F1AD6B842B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JujuControl.Business", "JujuControl.Business\JujuControl.Business.csproj", "{F67D5303-F01B-46D4-B5D8-B1F1AD6B842B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
